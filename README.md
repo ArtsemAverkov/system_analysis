@@ -81,3 +81,17 @@
 + [HTTPS](ppd.md#HTTPS)
 + [TLS SSL](ppd.md#TLS-SSL)
 
+
+
+## Форматы данных
+
++ [форматы данных](fd.md#форматы-данных)
++ [XML](fd.md#XML)
++ [XML Schema Definition](fd.md#XML-Schema-Definition)
++ [JSON](fd.md#JSON)
++ [JSON Schema](fd.md#JSON-Schema)
++ [Полный обзор валидации JSON с использованием JSON Schema](fd.md#Полный-обзор-валидации-JSON-с-использованием-JSON-Schema)
++ [YAML](fd.md#YAML)
++ [Регулярные выражения](fd.md#Регулярные-выражения)
+
+
