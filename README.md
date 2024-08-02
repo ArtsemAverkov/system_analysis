@@ -10,6 +10,7 @@
 + [Базы данных](#Базы-данных)
 + [SQL](#SQL)
 + [Front](#Front)
++ [Git](#Git)
 
 
 ## SA
@@ -166,4 +167,12 @@
 + [Server Driven UI](fr.md#Server-Driven-UI)
 + [Принципы FIRST](fr.md#Принципы-FIRST)
 + [Component Driven Development](fr.md#Component-Driven-Development)
+
+
+# Git
++ [Git](git.md#Git)
++ [CI CD](git.md#CI-CD)
++ [DevOps](git.md#DevOps)
++ [Docker](git.md#Docker)
+
 
