@@ -11,6 +11,7 @@
 + [SQL](#SQL)
 + [Front](#Front)
 + [Git](#Git)
++ [SOAP REST](#SOAP-REST)
 
 
 ## SA
@@ -83,6 +84,7 @@
 + [Ключевые различия между версиями HTTP](ppd.md#Ключевые-различия-между-версиями-HTTP)
 + [HTTPS](ppd.md#HTTPS)
 + [TLS SSL](ppd.md#TLS-SSL)
++ [Установка соединения TLS](ppd.md#Установка-соединения-TLS)
 
 
 
@@ -176,3 +178,11 @@
 + [Docker](git.md#Docker)
 
 
+# SOAP REST
++ [SOAP](soap.md#SOAP)
+	+ [Правила и рекомендации SOAP API](soap.md#Правила-и-рекомендации-SOAP-API)
+	+ [Примеры SOAP запросов и ответов](soap.md#Примеры-SOAP-запросов-и-ответов)
++ [REST](soap.md#REST)
+	+ [Спецификация RESTful API](soap.md#Спецификация-RESTful-API)
+	+ [Основные правила спецификации REST](soap.md#Основные-правила-спецификации-REST)
+	+ [Примеры спецификации RESTful API](soap.md#Примеры-спецификации-RESTful-API)
