@@ -182,6 +182,7 @@
 + [SOAP](soap.md#SOAP)
 	+ [Правила и рекомендации SOAP API](soap.md#Правила-и-рекомендации-SOAP-API)
 	+ [Примеры SOAP запросов и ответов](soap.md#Примеры-SOAP-запросов-и-ответов)
+	+ [WSDL](soap.md#WSDL)
 + [REST](soap.md#REST)
 	+ [Спецификация RESTful API](soap.md#Спецификация-RESTful-API)
 	+ [Основные правила спецификации REST](soap.md#Основные-правила-спецификации-REST)

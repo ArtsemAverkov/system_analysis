@@ -5,6 +5,7 @@
 + [SOAP](#SOAP)
 	+ [Правила и рекомендации SOAP API](#Правила-и-рекомендации-SOAP-API)
 	+ [Примеры SOAP запросов и ответов](#Примеры-SOAP-запросов-и-ответов)
+	+ [WSDL](#WSDL)
 + [REST](#REST)
 	+ [Спецификация RESTful API](#Спецификация-RESTful-API)
 	+ [Основные правила спецификации REST](#Основные-правила-спецификации-REST)
@@ -288,6 +289,206 @@ xmlns:ns="http://example.com/namespace"
 ### Заключение
 
 SOAP API обеспечивает надежный и стандартизированный способ обмена данными между распределенными системами. Он поддерживает сложные сценарии взаимодействия, такие как транзакции и маршрутизация сообщений, и обеспечивает высокий уровень безопасности. Эти особенности делают SOAP идеальным для корпоративных приложений и интеграционных решений.
+
+
+[к оглавлению](#SOAP-REST)
+
+
+# WSDL
+
+`WSDL `(Web Services Description Language) является XML-языком, который используется для описания веб-сервисов и их интерфейсов. Он предоставляет способ для определения местоположения службы и операций, которые она поддерживает, что позволяет автоматизировать взаимодействие между различными системами.
+
+### Структура WSDL документа
+
+**Документ WSDL состоит из следующих основных элементов:**
+
+- `definitions:` Корневой элемент WSDL документа, который содержит все остальные элементы. Он включает пространства имен, которые используются в документе.
+- `types:` Определяет типы данных, используемые в сообщениях веб-сервиса. Этот раздел обычно использует XML Schema (XSD) для определения сложных типов данных.
+- `message:` Определяет сообщения, которые обмениваются между клиентом и веб-сервисом. Сообщение состоит из одной или нескольких частей (part), каждая из которых может быть простым или сложным типом данных.
+- `portType:` Описывает интерфейс веб-сервиса, определяя операции, которые он поддерживает. Каждая операция состоит из входного и выходного сообщений (и иногда сообщения об ошибках).
+- `binding:` Указывает, какой транспортный протокол используется для взаимодействия с веб-сервисом (например, SOAP), и как сообщения должны быть закодированы.
+- `service:` Определяет конкретные конечные точки (адреса), где веб-сервис доступен.
+
+
+### Пример WSDL документа
+
+Рассмотрим пример простого WSDL документа, описывающего веб-сервис для получения информации о книге:
+
+```xml
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://example.com/bookservice"
+             targetNamespace="http://example.com/bookservice">
+
+    <types>
+        <xsd:schema targetNamespace="http://example.com/bookservice">
+            <xsd:element name="GetBookRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ISBN" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetBookResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Title" type="xsd:string"/>
+                        <xsd:element name="Author" type="xsd:string"/>
+                        <xsd:element name="Publisher" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="GetBookRequestMessage">
+        <part name="parameters" element="tns:GetBookRequest"/>
+    </message>
+
+    <message name="GetBookResponseMessage">
+        <part name="parameters" element="tns:GetBookResponse"/>
+    </message>
+
+    <portType name="BookServicePortType">
+        <operation name="GetBook">
+            <input message="tns:GetBookRequestMessage"/>
+            <output message="tns:GetBookResponseMessage"/>
+        </operation>
+    </portType>
+
+    <binding name="BookServiceBinding" type="tns:BookServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetBook">
+            <soap:operation soapAction="http://example.com/bookservice/GetBook"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="BookService">
+        <port name="BookServicePort" binding="tns:BookServiceBinding">
+            <soap:address location="http://example.com/bookservice"/>
+        </port>
+    </service>
+</definitions>
+
+```
+
+
+### Основные элементы WSDL документа
+
+`Definitions`
+
+Корневой элемент документа WSDL, который содержит другие элементы и задает пространство имен для документа:
+
+```xml
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://example.com/bookservice"
+             targetNamespace="http://example.com/bookservice">
+```
+
+`Types`
+
+Определяет сложные типы данных, используемые в сообщениях. В данном примере используется XML Schema для определения типов:
+
+```xml
+
+<types>
+    <xsd:schema targetNamespace="http://example.com/bookservice">
+        <xsd:element name="GetBookRequest">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="ISBN" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="GetBookResponse">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="Title" type="xsd:string"/>
+                    <xsd:element name="Author" type="xsd:string"/>
+                    <xsd:element name="Publisher" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+</types>
+```
+
+
+`Message`
+
+Определяет сообщения, передаваемые между клиентом и сервером. Каждое сообщение состоит из одной или нескольких частей:
+
+```xml
+
+<message name="GetBookRequestMessage">
+    <part name="parameters" element="tns:GetBookRequest"/>
+</message>
+
+<message name="GetBookResponseMessage">
+    <part name="parameters" element="tns:GetBookResponse"/>
+</message>
+```
+
+`PortType`
+
+Описывает интерфейс веб-сервиса, определяя операции и их сообщения:
+
+```xml
+
+<portType name="BookServicePortType">
+    <operation name="GetBook">
+        <input message="tns:GetBookRequestMessage"/>
+        <output message="tns:GetBookResponseMessage"/>
+    </operation>
+</portType>
+```
+
+`Binding`
+
+Определяет, как операции и сообщения отображаются на конкретный протокол. В данном случае используется SOAP:
+
+```xml
+
+<binding name="BookServiceBinding" type="tns:BookServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetBook">
+        <soap:operation soapAction="http://example.com/bookservice/GetBook"/>
+        <input>
+            <soap:body use="literal"/>
+        </input>
+        <output>
+            <soap:body use="literal"/>
+        </output>
+    </operation>
+</binding>
+```
+
+`Service`
+
+Определяет конкретные адреса, где доступен веб-сервис:
+
+```xml
+
+<service name="BookService">
+    <port name="BookServicePort" binding="tns:BookServiceBinding">
+        <soap:address location="http://example.com/bookservice"/>
+    </port>
+</service>
+```
+### Заключение
+
+WSDL предоставляет стандартизированный способ описания веб-сервисов, что упрощает автоматизацию взаимодействия между различными системами и платформами. Он играет ключевую роль в экосистеме веб-сервисов, предоставляя подробные спецификации, необходимые для генерации клиентского и серверного кода, проверки сообщений и интеграции различных приложений.
 
 
 [к оглавлению](#SOAP-REST)
