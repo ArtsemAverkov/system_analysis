@@ -19,7 +19,9 @@
 	- [Методология Lean Startup](#Методология-Lean-Startup)
 	- [Agile](#Agile)
 + [Scrum Kanban](#Scrum-Kanban)
++ [Пример Scrum и Canbana](#Пример-Scrum-и-Canbana)
 + [DevOps](#DevOps)
+
 
 # Cистемный Aналитик
 
